@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story Quest: The Kindness Kingdom</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4faff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #6cc3d5;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .card {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      color: #4a90e2;
+    }
+    .questions, .prompt {
+      margin-top: 1rem;
+      padding-left: 1rem;
+    }
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eee;
+      margin-top: 2rem;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background-color: #6cc3d5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn:hover {
+      background-color: #57aab7;
+    }
+    .response-box {
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Story Quest: The Kindness Kingdom</h1>
+    <p>Interactive Reading & SEL Game for 2nd Grade</p>
+  </header>
+  <main id="game">
+    <!-- Game content dynamically added here -->
+  </main>
+  <footer class="footer">
+    &copy; 2025 Story Quest - SEL Learning Game
+  </footer>
+
+  <script>
+    const stories = [
+      {
+        title: "Milo and the Missing Mitten",
+        text: "Milo couldn’t find his mitten. It wasn’t in his cubby or backpack. He felt frustrated and didn’t want to play outside. Then his friend Jade helped him look near the art table—and there it was!",
+        questions: [
+          "Who is the main character?",
+          "What is the problem?",
+          "How is it solved?",
+          "How does Milo feel at the end?"
+        ],
+        prompt: "What could you say to help someone who lost something?"
+      },
+      {
+        title: "Lila's Loud Day",
+        text: "Lila was excited to share during class, but she kept talking out of turn. Her classmates got frustrated. Her teacher reminded her about raising hands. Lila took a deep breath and waited next time.",
+        questions: [
+          "What was Lila's problem?",
+          "How did others feel?",
+          "What did Lila learn?",
+          "How can you show respect when sharing ideas?"
+        ],
+        prompt: "What helps you wait your turn to speak?"
+      },
+      {
+        title: "Nico's New Friend",
+        text: "Nico was nervous about recess. He didn’t know who to play with. Then Jamal asked if he wanted to build a fort. Nico smiled and said yes. They played the whole time together.",
+        questions: [
+          "Why was Nico nervous?",
+          "What kind choice did Jamal make?",
+          "How did Nico feel at the end?",
+          "What can you do if someone looks lonely?"
+        ],
+        prompt: "Describe a time you made a new friend."
+      }
+    ];
+
+    let currentStory = 0;
+
+    function renderStory() {
+      const story = stories[currentStory];
+      const container = document.getElementById('game');
+      container.innerHTML = `
+        <div class="card">
+          <h2>${story.title}</h2>
+          <p>${story.text}</p>
+          <div class="questions">
+            <strong>Story Questions:</strong>
+            <ul>
+              ${story.questions.map(q => `<li>${q}<br><textarea class='response-box' rows='2'></textarea></li>`).join('')}
+            </ul>
+          </div>
+          <div class="prompt">
+            <strong>SEL Prompt:</strong><br>
+            ${story.prompt}<br>
+            <textarea class='response-box' rows='2'></textarea>
+          </div>
+          <button class="btn" onclick="nextStory()">Next Story</button>
+        </div>
+      `;
+    }
+
+    function nextStory() {
+      currentStory++;
+      if (currentStory < stories.length) {
+        renderStory();
+      } else {
+        document.getElementById('game').innerHTML = `
+          <div class="card">
+            <h2>You're a Story Quest Champion!</h2>
+            <p>You've completed all the stories. Great job showing kindness and thinking deeply!</p>
+          </div>
+        `;
+      }
+    }
+
+    window.onload = renderStory;
+  </script>
+</body>
+</html>
